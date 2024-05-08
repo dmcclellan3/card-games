@@ -1,11 +1,11 @@
 import random
 
-DeckValue = list(range(1, 53))
-Suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-CardNumbers = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-CardHand = ['2']
+Deck_Value = list(range(1, 53))
+suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+Card_Hand = ['1']
 Score = [0]
-FaceValueCards = {11: 'J', 
+Face_Value_Cards = {11: 'J', 
                   12: 'Q', 
                   13: 'K', 
                   14: 'A'}
@@ -21,7 +21,8 @@ Clubs = list(range(2,15))
 ##alerting new shuffle
 
 class Game:
-    def __init__(self, PlayerTurn, CardHand, WinningHand, Score):
+    def __init__(self, NewGame, PlayerTurn, CardHand, WinningHand, Score):
+        self.newgame = NewGame
         self.playerturn = PlayerTurn
         self.cardhand = CardHand
         self.score = Score
@@ -41,16 +42,29 @@ class Deck:
         self.suits = Suits
         self.cardnumbers = CardNumbers
         self.deckvalue = DeckValue
-        self.value = Value 
         self.cardcount = CardCount
         self.shuffle = Shuffle
         
 
 class Card:
-    def __init__(self, Random, Value):
+    def __init__(self, Random, Value, Draw):
         self.random = Random
+        self.draw = Draw
         self.value = Value
-        pass
+
+def generate_cards(values, suits):
+    cards = []
+    for value in values:
+        for suit in suits:
+            if value in Face_Value_Cards:
+
+def game():
+    Play = input("Start a game of High Card? Y/N")
+
+
+
+
+
 
 
 ##init 
