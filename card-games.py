@@ -6,9 +6,9 @@ values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 Card_Hand = ['1']
 Score = [0]
 Face_Value_Cards = {11: 'J', 
-                  12: 'Q', 
-                  13: 'K', 
-                  14: 'A'}
+                    12: 'Q', 
+                    13: 'K', 
+                    14: 'A'}
 
 Spades = list(range(2,15))
 Hearts = list(range(2,15))
@@ -52,14 +52,23 @@ class Card:
         self.draw = Draw
         self.value = Value
 
+
+def game():
+    pass
+
+
 def generate_cards(values, suits):
     cards = []
     for value in values:
-        for suit in suits:
-            if value in Face_Value_Cards:
+        for suit in suits:                  ##This section checks what the value is of a card
+            if value in Face_Value_Cards:   ##It will determine if a card has a face value or not.
+                face_card = Face_Value_Cards[value]
+                cards.append((face_card, suit))
+            else:
+                cards.append((value, suit))
+    return cards
 
-def game():
-    Play = input("Start a game of High Card? Y/N")
+
 
 
 
@@ -81,17 +90,4 @@ def game():
 ## how many cards they get
 ##dealer
 
-##score class
-##scoreboard
-
-
-
-
-
-
-
-
-
-
-
-
+##score class ##scoreboard
