@@ -40,7 +40,27 @@ class Player:
         self.dealer = Dealer
         self.cardhand = CardHand
         
+def start_game():
+    pass
+    ##start the game(adding an input for if they want to play Y/N)
+    ##generating the cards 
+class Card:
+    def __init__(self, Value, Suit):
+        self.value = Value
+        self.suit = Suit
         
+def generate_cards(values, suits):
+    cards = []
+    for value in values:
+        for suit in suits:                  ##This section checks what the value is of a card
+            cards.append(Card(value, suit))
+    random.shuffle(cards)
+    return cards
+            # if value in Face_Value_Cards:   ##It will determine if a card has a face value or not.
+            #     face_card = Face_Value_Cards[value]
+            #     # cards.append((face_card, suit))
+            # else:
+            #     cards.append((value, suit))
 
 class Deck:
     def __init__(self, Suits, CardNumbers, DeckValue, CardCount, Shuffle): 
@@ -49,43 +69,25 @@ class Deck:
         self.deckvalue = DeckValue
         self.cardcount = CardCount
         self.shuffle = Shuffle
+        self.cards = generate_cards(values, suits)        
+        # self.cards = Cards
         # temp_list_of_cards = generate_cards(values, suits)
-        # self.cards = temp_list_of_cards
         
-current_game_deck = Deck()
+current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value), True)
 game_running = True
 for card_obj in current_game_deck.cards:
-    while game_running == True:
-        suits = random.choice()
-        values = random.choice()
-        Face_Value_Cards = random.choice()
-        suits = random.choice()
-        shuffle = random.choice()
-        print('A card!')
-
-class Card:
-    def __init__(self, Random, Value, Draw):
-        self.random = Random
-        self.draw = Draw
-        self.value = Value
+    print('A card!', card_obj.value, card_obj.suit)
+    # while game_running == True:
+        # suits = random.choice(suits)
+        # values = random.choice(values)
+        # Face_Value_Cards = random.choice()
+        # game_running = False
+        
 
 
-def start_game():
-    pass
-    ##start the game(adding an input for if they want to play Y/N)
-    ##generating the cards 
 
 
-def generate_cards(values, suits):
-    cards = []
-    for value in values:
-        for suit in suits:                  ##This section checks what the value is of a card
-            if value in Face_Value_Cards:   ##It will determine if a card has a face value or not.
-                face_card = Face_Value_Cards[value]
-                cards.append((face_card, suit))
-            else:
-                cards.append((value, suit))
-    return cards
+
 
 
 
