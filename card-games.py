@@ -20,9 +20,14 @@ Clubs = list(range(2,15))
 ##reshuffle the deck and start over if theres not enough cards 
 ##alerting new shuffle
 
+class StartGame: 
+    def __init__(self, NewGame, Decks, Players):
+        self.newgame = NewGame 
+        self.decks = Decks
+        self.players = Players  ##one player and dealer
+
 class Game:
-    def __init__(self, NewGame, PlayerTurn, CardHand, WinningHand, Score):
-        self.newgame = NewGame
+    def __init__(self, PlayerTurn, CardHand, WinningHand, Score):
         self.playerturn = PlayerTurn
         self.cardhand = CardHand
         self.score = Score
@@ -44,7 +49,19 @@ class Deck:
         self.deckvalue = DeckValue
         self.cardcount = CardCount
         self.shuffle = Shuffle
+        # temp_list_of_cards = generate_cards(values, suits)
+        # self.cards = temp_list_of_cards
         
+current_game_deck = Deck()
+game_running = True
+for card_obj in current_game_deck.cards:
+    while game_running == True:
+        suits = random.choice()
+        values = random.choice()
+        Face_Value_Cards = random.choice()
+        suits = random.choice()
+        shuffle = random.choice()
+        print('A card!')
 
 class Card:
     def __init__(self, Random, Value, Draw):
@@ -53,8 +70,10 @@ class Card:
         self.value = Value
 
 
-def game():
+def start_game():
     pass
+    ##start the game(adding an input for if they want to play Y/N)
+    ##generating the cards 
 
 
 def generate_cards(values, suits):
