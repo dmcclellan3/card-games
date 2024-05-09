@@ -2,48 +2,65 @@ import random
 
 Deck_Value = list(range(1, 53))
 suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+# values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+values = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 Card_Hand = ['1']
 Score = [0]
 Face_Value_Cards = {11: 'J', 
                     12: 'Q', 
-                    13: 'K', 
+                    13: 'K', ## Card needs to be written as J then the value 
                     14: 'A'}
 
-Spades = list(range(2,15))
-Hearts = list(range(2,15))
-Diamonds = list(range(2,15))
-Clubs = list(range(2,15))
+# Spades = list(range(2,15))
+# Hearts = list(range(2,15))
+# Diamonds = list(range(2,15))
+# Clubs = list(range(2,15))
 
-##game class
-##who's turn is it and who won the hand 
-##reshuffle the deck and start over if theres not enough cards 
-##alerting new shuffle
+##Todo list: In winner who won -assign a number value to J,Q,K,A value(referencing what I have in FVC)
+## number of decks needs to ask for user input 
+##How does one suit beat another or tie? 
+
+
+
+
+# class Game:
+#     def __init__(self, PlayerTurn, CardHand, WinningHand, Score, Suits, Deck_Value, players):
+#         self.playerturn = PlayerTurn
+#         self.cardhand = CardHand
+#         self.score = Score
+#         self.winninghand = WinningHand
+#         self.suits = Suits['Spades', 'Hearts', 'Clubs', 'Diamonds']
+#         self.deckvalue = Deck_Value
+#         self.players = players  
+
+
+        
+class Player:
+    def __init__(self, name_param):
+        self.name = name_param
+        self.card = None
+player1 = Player('Duke')
+print('Player 1: ', player1.name)
+
+dealer = Player('Dealer')
+print('Dealer: ', dealer.name)
+
 
 class StartGame: 
-    def __init__(self, NewGame, Decks, Players):
-        self.newgame = NewGame 
-        self.decks = Decks
-        self.players = Players  ##one player and dealer
+    def __init__(self, decks):
+        self.decks = decks
 
-class Game:
-    def __init__(self, PlayerTurn, CardHand, WinningHand, Score):
-        self.playerturn = PlayerTurn
-        self.cardhand = CardHand
-        self.score = Score
-        self.winninghand = WinningHand
-        
+    def check_winner(self):
+        if player1.card.value > dealer.card.value:
+            print('Player 1 Wins!')
+        if dealer.card.value > player1.card.value:
+            print('Dealer Wins!')
 
-class Player:
-    def __init__(self, Player, Dealer, CardHand):
-        self.player = Player
-        self.dealer = Dealer
-        self.cardhand = CardHand
-        
-def start_game():
-    pass
-    ##start the game(adding an input for if they want to play Y/N)
-    ##generating the cards 
+new_game = StartGame(1)
+
+
+
+
 class Card:
     def __init__(self, Value, Suit):
         self.value = Value
@@ -52,36 +69,48 @@ class Card:
 def generate_cards(values, suits):
     cards = []
     for value in values:
-        for suit in suits:                  ##This section checks what the value is of a card
-            cards.append(Card(value, suit))
-    random.shuffle(cards)
+        for suit in suits:                  ##This section takes cards values and suits from the array 
+            cards.append(Card(value, suit)) ##and appends the card object to the value and suit
+    random.shuffle(cards)                   ##Then we can use the random function that was imported and shuffle the cards list 
     return cards
-            # if value in Face_Value_Cards:   ##It will determine if a card has a face value or not.
+            # if value in Face_Value_Cards:   
             #     face_card = Face_Value_Cards[value]
             #     # cards.append((face_card, suit))
             # else:
             #     cards.append((value, suit))
 
 class Deck:
-    def __init__(self, Suits, CardNumbers, DeckValue, CardCount, Shuffle): 
+    def __init__(self, Suits, CardNumbers, DeckValue, CardCount): 
         self.suits = Suits
         self.cardnumbers = CardNumbers
         self.deckvalue = DeckValue
         self.cardcount = CardCount
-        self.shuffle = Shuffle
         self.cards = generate_cards(values, suits)        
+        
+
+    def deal(self):
+        player1.card = self.cards.pop()
+        dealer.card = self.cards.pop()
         # self.cards = Cards
         # temp_list_of_cards = generate_cards(values, suits)
         
-current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value), True)
-game_running = True
-for card_obj in current_game_deck.cards:
-    print('A card!', card_obj.value, card_obj.suit)
+current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value))  ##Why does 'True' work here? It breaks otherwise.
+current_game_deck.deal()
+print('player value:', player1.card.value, player1.card.suit)
+print('dealer value:', dealer.card.value, dealer.card.suit)
+
+new_game.check_winner()
+
+# for card_obj in current_game_deck.cards:
+#     print('Card', card_obj.value, card_obj.suit)
+    
     # while game_running == True:
         # suits = random.choice(suits)
         # values = random.choice(values)
         # Face_Value_Cards = random.choice()
         # game_running = False
+
+
         
 
 
