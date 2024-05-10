@@ -60,12 +60,14 @@ class StartGame:
     def check_winner(self):
         if player1.card.numbervalue > dealer.card.numbervalue:
             print('Player 1 Wins!')
+            return False
             # player1.increment_score()
         elif dealer.card.numbervalue > player1.card.numbervalue:
             print('Dealer Wins!')
+            return False 
             # print('Dealer Score :')
             # dealer.increment_score()
-        else: current_game_deck.deal()
+        else: return True 
         
         # self.check_winner()
         
@@ -97,7 +99,7 @@ def generate_cards(values, suits):
             #     cards.append((value, suit))
 
 class Deck:
-    def __init__(self, Suits, CardNumbers, DeckValue, CardCount): ##Why does cardcount work when its not being used anywhere else in the code? 
+    def __init__(self, Suits, CardNumbers, DeckValue, CardCount):
         self.suits = Suits
         self.cardnumbers = CardNumbers
         self.deckvalue = DeckValue
@@ -111,9 +113,14 @@ class Deck:
         # self.cards = Cards
         # temp_list_of_cards = generate_cards(values, suits)
         
-current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value))  ## what is len doing?
-current_game_deck.deal()
-print('player value:', player1.card.value, player1.card.suit)
-print('dealer value:', dealer.card.value, dealer.card.suit)
+current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value)) 
 
-new_game.check_winner()  
+def play_loop():
+    current_game_deck.deal()
+    print('player value:', player1.card.value, player1.card.suit)
+    print('dealer value:', dealer.card.value, dealer.card.suit)
+    restart_game = new_game.check_winner()  
+    if restart_game == True:
+        play_loop()
+
+play_loop()
