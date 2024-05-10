@@ -8,7 +8,7 @@ values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 # Score = [0]
 Face_Value_Cards = {'J': 11, 
                     'Q': 12, 
-                    'K': 13, ## Card needs to be written as J then the value 
+                    'K': 13,  
                     'A': 14,}
 
 # Spades = list(range(2,15))
@@ -36,14 +36,24 @@ Face_Value_Cards = {'J': 11,
 
         
 class Player:
-    def __init__(self, name_param):
+    def __init__(self, name_param, score=0):
         self.name = name_param
         self.card = None
+        self.score = score
+
+def increment_score(self):
+        self.score += 1
+        print("Player 1 Score: ", player1.score)
+        print("Dealer Score: ", dealer.score)
+
 player1 = Player('Duke')
 print('Player 1: ', player1.name)
 
 dealer = Player('Dealer')
 print('Dealer: ', dealer.name)
+
+
+    
 
 new_game = input("Play a game of High Card? Y/N")
 
