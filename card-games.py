@@ -2,18 +2,14 @@ import random
 
 Deck_Value = list(range(1, 53))
 suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-# values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-Card_Hand = ['1']
-Score = [0]
+values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+# values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+# Card_Hand = ['1']
+# Score = [0]
 Face_Value_Cards = {'J': 11, 
                     'Q': 12, 
                     'K': 13, ## Card needs to be written as J then the value 
-                    'A': 14,
-                    11 : 'J',
-                    12 : 'Q',
-                    13 : 'K',
-                    14 : 'A'}
+                    'A': 14,}
 
 # Spades = list(range(2,15))
 # Hearts = list(range(2,15))
@@ -76,13 +72,13 @@ def generate_cards(values, suits):
     for value in values:
         for suit in suits:                  ##This section takes cards values and suits from the array 
             cards.append(Card(value, suit)) ##and appends the card object to the value and suit
-            if value in Face_Value_Cards:   
-                face_card = Face_Value_Cards[value]
-                cards.append((face_card, suit))
-            else:
-                cards.append((value, suit))
     random.shuffle(cards)                   ##Then we can use the random function that was imported and shuffle the cards list 
     return cards
+            # if value in Face_Value_Cards:   
+            #     face_card = Face_Value_Cards[value]
+            #     # cards.append((face_card, suit))
+            # else:
+            #     cards.append((value, suit))
 
 class Deck:
     def __init__(self, Suits, CardNumbers, DeckValue, CardCount): 
@@ -99,12 +95,12 @@ class Deck:
         # self.cards = Cards
         # temp_list_of_cards = generate_cards(values, suits)
         
-current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value))  ##Why does 'True' work here? It breaks otherwise.
+current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value))  
 current_game_deck.deal()
 print('player value:', player1.card.value, player1.card.suit)
 print('dealer value:', dealer.card.value, dealer.card.suit)
 
-new_game.check_winner() 
+new_game.check_winner()
 
 # for card_obj in current_game_deck.cards:
 #     print('Card', card_obj.value, card_obj.suit)
