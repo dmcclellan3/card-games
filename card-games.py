@@ -1,9 +1,10 @@
 import random
 
-Deck_Value = list(range(1, 53))
+Deck_Value = list(range(1, 52))
 suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+suits_values = []
 values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-# values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+number_values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 # Card_Hand = ['1']
 # Score = [0]
 Face_Value_Cards = {'J': 11, 
@@ -11,12 +12,7 @@ Face_Value_Cards = {'J': 11,
                     'K': 13,  
                     'A': 14,}
 
-# Spades = list(range(2,15))
-# Hearts = list(range(2,15))
-# Diamonds = list(range(2,15))
-# Clubs = list(range(2,15))
-
-##Todo list: In winner who won -assign a number value to J,Q,K,A value(referencing what I have in FVC)
+##Todo list: 
 ## number of decks needs to ask for user input 
 ##How does one suit beat another or tie? 
 
@@ -41,7 +37,7 @@ class Player:
         self.card = None
         self.score = score
 
-def increment_score(self):
+    def increment_score(self):
         self.score += 1
         print("Player 1 Score: ", player1.score)
         print("Dealer Score: ", dealer.score)
@@ -55,35 +51,43 @@ print('Dealer: ', dealer.name)
 
     
 
-new_game = input("Play a game of High Card? Y/N")
+new_game = input("Play a round of High Card? Y/N")
 
 class StartGame: 
     def __init__(self, decks):
         self.decks = decks
 
     def check_winner(self):
-        if player1.card.value > dealer.card.value:
+        if player1.card.numbervalue > dealer.card.numbervalue:
             print('Player 1 Wins!')
-        if dealer.card.value > player1.card.value:
+            # player1.increment_score()
+        elif dealer.card.numbervalue > player1.card.numbervalue:
             print('Dealer Wins!')
-        if player1.card.value == dealer.card.value:
-            print("It's a tie!")
+            # print('Dealer Score :')
+            # dealer.increment_score()
+        else: current_game_deck.deal()
+        
+        # self.check_winner()
+        
+        ##player1.card.numbervalue == dealer.card.numbervalue:
+            ##print("It's a tie!")
 
-new_game = StartGame(1)
+new_game = StartGame(1) 
 
 
 
 
 class Card:
-    def __init__(self, Value, Suit):
+    def __init__(self, Value, Suit, NumberValue):
         self.value = Value
         self.suit = Suit
+        self.numbervalue = NumberValue
         
 def generate_cards(values, suits):
     cards = []
-    for value in values:
+    for index, value in enumerate(values):
         for suit in suits:                  ##This section takes cards values and suits from the array 
-            cards.append(Card(value, suit)) ##and appends the card object to the value and suit
+            cards.append(Card(value, suit, NumberValue=number_values[index])) ##and appends the card object to the value and suit
     random.shuffle(cards)                   ##Then we can use the random function that was imported and shuffle the cards list 
     return cards
             # if value in Face_Value_Cards:   
@@ -93,7 +97,7 @@ def generate_cards(values, suits):
             #     cards.append((value, suit))
 
 class Deck:
-    def __init__(self, Suits, CardNumbers, DeckValue, CardCount): 
+    def __init__(self, Suits, CardNumbers, DeckValue, CardCount): ##Why does cardcount work when its not being used anywhere else in the code? 
         self.suits = Suits
         self.cardnumbers = CardNumbers
         self.deckvalue = DeckValue
@@ -107,50 +111,9 @@ class Deck:
         # self.cards = Cards
         # temp_list_of_cards = generate_cards(values, suits)
         
-current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value))  
+current_game_deck = Deck(suits, values, Deck_Value, len(Deck_Value))  ## what is len doing?
 current_game_deck.deal()
 print('player value:', player1.card.value, player1.card.suit)
 print('dealer value:', dealer.card.value, dealer.card.suit)
 
-new_game.check_winner()
-
-# for card_obj in current_game_deck.cards:
-#     print('Card', card_obj.value, card_obj.suit)
-    
-    # while game_running == True:
-        # suits = random.choice(suits)
-        # values = random.choice(values)
-        # Face_Value_Cards = random.choice()
-        # game_running = False
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##init 
-##shuffle
-##how many decks are there?
-
-##
-
-##Card class
-##Random card function
-##Removing a card from the deck and keeping track of the current amount in the deck. 
-
-##player
-## how many cards they get
-##dealer
-
-##score class ##scoreboard
+new_game.check_winner()  
