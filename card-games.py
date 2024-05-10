@@ -66,6 +66,8 @@ class StartGame:
             print('Player 1 Wins!')
         if dealer.card.value > player1.card.value:
             print('Dealer Wins!')
+        if player1.card.value == dealer.card.value:
+            print("It's a tie!")
 
 new_game = StartGame(1)
 
